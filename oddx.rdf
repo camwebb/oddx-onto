@@ -26,6 +26,7 @@
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <owl:Ontology rdf:about="http://purl.org/openddx/oddx.rdf">
+        <rdfs:label>The OpenDDX ontology</rdfs:label>
         <rdfs:comment>Development version at: https://github.com/openddx/oddx-ontology</rdfs:comment>
         <rdfs:comment>An ontology for connecting diseases with symptoms, via statements in documents or obsetrvations in patients</rdfs:comment>
         <owl:versionInfo>base 0.1, under development</owl:versionInfo>
@@ -244,7 +245,9 @@
     <!-- http://purl.org/openddx/oddx.rdf#DiagnosticTest -->
 
     <owl:Class rdf:about="&oddx;DiagnosticTest">
+        <rdfs:label>Diagnostic Test</rdfs:label>
         <rdfs:subClassOf rdf:resource="&oddx;Finding"/>
+        <rdfs:comment>A Class for disgnostic tests</rdfs:comment>
     </owl:Class>
     
 
@@ -258,6 +261,7 @@
     <!-- http://purl.org/openddx/oddx.rdf#DiseaseSymptomRecord -->
 
     <owl:Class rdf:about="&oddx;DiseaseSymptomRecord">
+        <rdfs:label>DiseaseSymptomRecord</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&oddx;hasDiseaseRecord"/>
@@ -273,6 +277,7 @@
     <!-- http://purl.org/openddx/oddx.rdf#Finding -->
 
     <owl:Class rdf:about="&oddx;Finding">
+        <rdfs:label>Finding</rdfs:label>
         <rdfs:comment>The general class of findings about a disease in a patient, may include lab tests, symptoms (sensu stricto), signs (sensu stricto).</rdfs:comment>
     </owl:Class>
     
@@ -289,7 +294,9 @@
     <!-- http://purl.org/openddx/oddx.rdf#Symptom -->
 
     <owl:Class rdf:about="&oddx;Symptom">
+        <rdfs:label>Symptom</rdfs:label>
         <rdfs:subClassOf rdf:resource="&oddx;Finding"/>
+        <rdfs:comment>Symptoms (sensu stricto)</rdfs:comment>
     </owl:Class>
     
 
