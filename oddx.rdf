@@ -4,19 +4,19 @@
 <!DOCTYPE rdf:RDF [
     <!ENTITY terms "http://purl.org/dc/terms/" >
     <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY oddx "http://purl.org/openddx/oddx#" >
     <!ENTITY bibo "http://purl.org/ontology/bibo/" >
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY obo "http://purl.obolibrary.org/obo/" >
-    <!ENTITY oddx "http://purl.org/openddx/oddx.rdf#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
 ]>
 
 
-<rdf:RDF xmlns="http://openddx.net/onto/oddx.rdf#"
-     xml:base="http://openddx.net/onto/oddx.rdf"
-     xmlns:oddx="http://purl.org/openddx/oddx.rdf#"
+<rdf:RDF xmlns="http://openddx.net/onto/oddx#"
+     xml:base="http://openddx.net/onto/oddx"
+     xmlns:oddx="http://purl.org/openddx/oddx#"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/"
@@ -25,10 +25,10 @@
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <owl:Ontology rdf:about="http://purl.org/openddx/oddx.rdf">
+    <owl:Ontology rdf:about="http://purl.org/openddx/oddx">
         <rdfs:label>The OpenDDX ontology</rdfs:label>
-        <rdfs:comment>Development version at: https://github.com/openddx/oddx-ontology</rdfs:comment>
         <rdfs:comment>An ontology for connecting diseases with symptoms, via statements in documents or obsetrvations in patients</rdfs:comment>
+        <rdfs:comment>Development version at: https://github.com/openddx/oddx-ontology</rdfs:comment>
         <owl:versionInfo>base 0.1, under development</owl:versionInfo>
     </owl:Ontology>
     
@@ -73,27 +73,34 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#disease -->
+    <!-- http://purl.org/openddx/oddx#disease -->
 
     <owl:ObjectProperty rdf:about="&oddx;disease">
-        <rdfs:range rdf:resource="&obo;DOID_4"/>
-        <rdfs:domain rdf:resource="&oddx;DiseaseSymptomRecord"/>
-        <owl:inverseOf rdf:resource="&oddx;hasSymptomRecord"/>
+        <rdfs:domain rdf:resource="&oddx;DiseaseFindingRecord"/>
+        <owl:inverseOf rdf:resource="&oddx;hasFindingRecord"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#hasDiseaseRecord -->
+    <!-- http://purl.org/openddx/oddx#finding -->
+
+    <owl:ObjectProperty rdf:about="&oddx;finding">
+        <rdfs:domain rdf:resource="&oddx;DiseaseFindingRecord"/>
+        <rdfs:range rdf:resource="&oddx;Finding"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#hasDiseaseRecord -->
 
     <owl:ObjectProperty rdf:about="&oddx;hasDiseaseRecord">
-        <rdfs:domain rdf:resource="&obo;SYMP_0000462"/>
-        <rdfs:range rdf:resource="&oddx;DiseaseSymptomRecord"/>
-        <owl:inverseOf rdf:resource="&oddx;symptom"/>
+        <rdfs:range rdf:resource="&oddx;DiseaseFindingRecord"/>
+        <owl:inverseOf rdf:resource="&oddx;finding"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#hasFinding -->
+    <!-- http://purl.org/openddx/oddx#hasFinding -->
 
     <owl:ObjectProperty rdf:about="&oddx;hasFinding">
         <rdfs:comment>The simplest association of a disease with a finding (= symptom sensu lato)</rdfs:comment>
@@ -104,25 +111,24 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#hasSymptomRecord -->
+    <!-- http://purl.org/openddx/oddx#hasFindingRecord -->
 
-    <owl:ObjectProperty rdf:about="&oddx;hasSymptomRecord">
-        <rdfs:domain rdf:resource="&obo;DOID_4"/>
-        <rdfs:range rdf:resource="&oddx;DiseaseSymptomRecord"/>
+    <owl:ObjectProperty rdf:about="&oddx;hasFindingRecord">
+        <rdfs:range rdf:resource="&oddx;DiseaseFindingRecord"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#inPatient -->
+    <!-- http://purl.org/openddx/oddx#inPatient -->
 
     <owl:ObjectProperty rdf:about="&oddx;inPatient">
-        <rdfs:domain rdf:resource="&oddx;DiseaseSymptomRecord"/>
+        <rdfs:domain rdf:resource="&oddx;DiseaseFindingRecord"/>
         <rdfs:range rdf:resource="&foaf;Person"/>
     </owl:ObjectProperty>
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#isFindingOf -->
+    <!-- http://purl.org/openddx/oddx#isFindingOf -->
 
     <owl:ObjectProperty rdf:about="&oddx;isFindingOf">
         <rdfs:comment>The simplest association of a disease with a finding (= symptom sensu lato)</rdfs:comment>
@@ -132,20 +138,11 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#reference -->
+    <!-- http://purl.org/openddx/oddx#reference -->
 
     <owl:ObjectProperty rdf:about="&oddx;reference">
         <rdfs:range rdf:resource="&bibo;Document"/>
-        <rdfs:domain rdf:resource="&oddx;DiseaseSymptomRecord"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#symptom -->
-
-    <owl:ObjectProperty rdf:about="&oddx;symptom">
-        <rdfs:domain rdf:resource="&oddx;DiseaseSymptomRecord"/>
-        <rdfs:range rdf:resource="&oddx;Finding"/>
+        <rdfs:domain rdf:resource="&oddx;DiseaseFindingRecord"/>
     </owl:ObjectProperty>
     
 
@@ -167,7 +164,7 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#datePresent -->
+    <!-- http://purl.org/openddx/oddx#datePresent -->
 
     <owl:DatatypeProperty rdf:about="&oddx;datePresent">
         <rdfs:comment>The date the disease and symptom were present in the patient</rdfs:comment>
@@ -176,7 +173,7 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#estProbOfDisease -->
+    <!-- http://purl.org/openddx/oddx#estProbOfDisease -->
 
     <owl:DatatypeProperty rdf:about="&oddx;estProbOfDisease">
         <rdfs:comment>Estimated probability of the number of cases with an observed symptom in which a disease was found</rdfs:comment>
@@ -185,7 +182,7 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#estProbOfSymptom -->
+    <!-- http://purl.org/openddx/oddx#estProbOfSymptom -->
 
     <owl:DatatypeProperty rdf:about="&oddx;estProbOfSymptom">
         <rdfs:comment>Estimated probability of the number of cases of a disease in which a symptom was observed</rdfs:comment>
@@ -194,7 +191,7 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#population -->
+    <!-- http://purl.org/openddx/oddx#population -->
 
     <owl:DatatypeProperty rdf:about="&oddx;population">
         <rdfs:comment>Description of the population the record is drawn from. This would optimally point to another ontology for ethnic/geographic populations.</rdfs:comment>
@@ -219,30 +216,13 @@
     
 
 
-    <!-- http://purl.obolibrary.org/obo/DOID_4 -->
-
-    <owl:Class rdf:about="&obo;DOID_4">
-        <owl:equivalentClass rdf:resource="&oddx;Disease"/>
-    </owl:Class>
-    
-
-
-    <!-- http://purl.obolibrary.org/obo/SYMP_0000462 -->
-
-    <owl:Class rdf:about="&obo;SYMP_0000462">
-        <owl:equivalentClass rdf:resource="&oddx;Symptom"/>
-        <rdfs:subClassOf rdf:resource="&oddx;Finding"/>
-    </owl:Class>
-    
-
-
     <!-- http://purl.org/ontology/bibo/Document -->
 
     <owl:Class rdf:about="&bibo;Document"/>
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#DiagnosticTest -->
+    <!-- http://purl.org/openddx/oddx#DiagnosticTest -->
 
     <owl:Class rdf:about="&oddx;DiagnosticTest">
         <rdfs:label>Diagnostic Test</rdfs:label>
@@ -252,20 +232,30 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#Disease -->
+    <!-- http://purl.org/openddx/oddx#Disease -->
 
-    <owl:Class rdf:about="&oddx;Disease"/>
+    <owl:Class rdf:about="&oddx;Disease">
+        <rdfs:label>Disease</rdfs:label>
+        <rdfs:comment>A disease class: eqivalent to obo:DOID_4</rdfs:comment>
+    </owl:Class>
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#DiseaseSymptomRecord -->
+    <!-- http://purl.org/openddx/oddx#DiseaseFindingRecord -->
 
-    <owl:Class rdf:about="&oddx;DiseaseSymptomRecord">
-        <rdfs:label>DiseaseSymptomRecord</rdfs:label>
+    <owl:Class rdf:about="&oddx;DiseaseFindingRecord">
+        <rdfs:label>Disease x Finding Record</rdfs:label>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&oddx;hasDiseaseRecord"/>
                 <owl:onClass rdf:resource="&oddx;Disease"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&oddx;hasFindingRecord"/>
+                <owl:onClass rdf:resource="&oddx;Finding"/>
                 <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -274,7 +264,7 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#Finding -->
+    <!-- http://purl.org/openddx/oddx#Finding -->
 
     <owl:Class rdf:about="&oddx;Finding">
         <rdfs:label>Finding</rdfs:label>
@@ -283,7 +273,7 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#Sign -->
+    <!-- http://purl.org/openddx/oddx#Sign -->
 
     <owl:Class rdf:about="&oddx;Sign">
         <rdfs:subClassOf rdf:resource="&oddx;Finding"/>
@@ -291,12 +281,12 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx.rdf#Symptom -->
+    <!-- http://purl.org/openddx/oddx#Symptom -->
 
     <owl:Class rdf:about="&oddx;Symptom">
         <rdfs:label>Symptom</rdfs:label>
         <rdfs:subClassOf rdf:resource="&oddx;Finding"/>
-        <rdfs:comment>Symptoms (sensu stricto)</rdfs:comment>
+        <rdfs:comment>Symptoms (sensu stricto). Equivalent to obo:SYMP_0000462</rdfs:comment>
     </owl:Class>
     
 
@@ -304,88 +294,6 @@
     <!-- http://xmlns.com/foaf/0.1/Person -->
 
     <owl:Class rdf:about="&foaf;Person"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#Article0 -->
-
-    <owl:NamedIndividual rdf:about="&oddx;Article0">
-        <rdf:type rdf:resource="&bibo;Document"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#DSR0 -->
-
-    <owl:NamedIndividual rdf:about="&oddx;DSR0">
-        <rdf:type rdf:resource="&oddx;DiseaseSymptomRecord"/>
-        <oddx:estProbOfSymptom>0.3</oddx:estProbOfSymptom>
-        <oddx:datePresent>2011-01-01</oddx:datePresent>
-        <rdfs:comment>An example instance to demonstrate usage</rdfs:comment>
-        <terms:created>2012-03-14</terms:created>
-        <oddx:estProbOfDisease>0.2</oddx:estProbOfDisease>
-        <oddx:population>West Kalimantan, Indonesia, mixed ethnic</oddx:population>
-        <oddx:reference rdf:resource="&oddx;Article0"/>
-        <oddx:disease rdf:resource="&oddx;Disease1"/>
-        <terms:creator rdf:resource="&oddx;Doctor0"/>
-        <oddx:inPatient rdf:resource="&oddx;Patient0"/>
-        <oddx:symptom rdf:resource="&oddx;Symptom1"/>
-        <oddx:symptom rdf:resource="&oddx;Symptom2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#Disease1 -->
-
-    <owl:NamedIndividual rdf:about="&oddx;Disease1">
-        <rdf:type rdf:resource="&obo;DOID_4"/>
-        <oddx:hasFinding rdf:resource="&oddx;Symptom1"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#Doctor0 -->
-
-    <foaf:Person rdf:about="&oddx;Doctor0">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-    </foaf:Person>
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#Patient0 -->
-
-    <foaf:Person rdf:about="&oddx;Patient0">
-        <rdf:type rdf:resource="&owl;NamedIndividual"/>
-        <oddx:population>location=West Kalimantan, ethnicity=Melayu</oddx:population>
-        <foaf:age>23</foaf:age>
-    </foaf:Person>
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#Symptom1 -->
-
-    <owl:NamedIndividual rdf:about="&oddx;Symptom1">
-        <rdf:type rdf:resource="&obo;SYMP_0000462"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://purl.org/openddx/oddx.rdf#Symptom2 -->
-
-    <owl:NamedIndividual rdf:about="&oddx;Symptom2">
-        <rdf:type rdf:resource="&obo;SYMP_0000462"/>
-    </owl:NamedIndividual>
 </rdf:RDF>
 
 

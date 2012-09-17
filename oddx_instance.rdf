@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY terms "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY oddx "http://purl.org/openddx/oddx#" >
+    <!ENTITY oddxi "http://purl.org/openddx/oddx_instance.rdf#" >
+    <!ENTITY bibo "http://purl.org/ontology/bibo/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY obo "http://purl.obolibrary.org/obo/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://openddx.net/onto/oddx#"
+     xml:base="http://openddx.net/onto/oddx"
+     xmlns:oddx="http://purl.org/openddx/oddx#"
+     xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:bibo="http://purl.org/ontology/bibo/"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://purl.org/openddx/oddx_instance.rdf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&foaf;age"/>
+    <owl:AnnotationProperty rdf:about="&terms;created"/>
+    <owl:AnnotationProperty rdf:about="&oddx;population"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:ObjectProperty rdf:about="&terms;creator"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#disease -->
+
+    <owl:ObjectProperty rdf:about="&oddx;disease"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#finding -->
+
+    <owl:ObjectProperty rdf:about="&oddx;finding"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#hasFinding -->
+
+    <owl:ObjectProperty rdf:about="&oddx;hasFinding"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#inPatient -->
+
+    <owl:ObjectProperty rdf:about="&oddx;inPatient"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#isFindingOf -->
+
+    <owl:ObjectProperty rdf:about="&oddx;isFindingOf"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#reference -->
+
+    <owl:ObjectProperty rdf:about="&oddx;reference"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/openddx/oddx#datePresent -->
+
+    <owl:DatatypeProperty rdf:about="&oddx;datePresent"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#estProbOfDisease -->
+
+    <owl:DatatypeProperty rdf:about="&oddx;estProbOfDisease"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#estProbOfSymptom -->
+
+    <owl:DatatypeProperty rdf:about="&oddx;estProbOfSymptom"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#population -->
+
+    <owl:DatatypeProperty rdf:about="&oddx;population"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/ontology/bibo/Document -->
+
+    <owl:Class rdf:about="&bibo;Document"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#Disease -->
+
+    <owl:Class rdf:about="&oddx;Disease"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#DiseaseFindingRecord -->
+
+    <owl:Class rdf:about="&oddx;DiseaseFindingRecord"/>
+    
+
+
+    <!-- http://purl.org/openddx/oddx#Symptom -->
+
+    <owl:Class rdf:about="&oddx;Symptom"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="&foaf;Person"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <owl:NamedIndividual rdf:about="&oddxi;Article0">
+        <rdf:type rdf:resource="&bibo;Document"/>
+    </owl:NamedIndividual>
+    
+
+
+    <owl:NamedIndividual rdf:about="&oddxi;DFR0">
+        <rdf:type rdf:resource="&oddx;DiseaseFindingRecord"/>
+        <rdfs:comment>An example instance to demonstrate usage</rdfs:comment>
+        <terms:created>2012-03-14</terms:created>
+        <oddx:estProbOfDisease>0.2</oddx:estProbOfDisease>
+        <oddx:estProbOfSymptom>0.3</oddx:estProbOfSymptom>
+        <oddx:population>West Kalimantan, mixed ethnic</oddx:population>
+        <oddx:datePresent>2012-09-17</oddx:datePresent>
+        <oddx:reference rdf:resource="&oddxi;Article0"/>
+        <oddx:disease rdf:resource="&oddxi;Disease1"/>
+        <terms:creator rdf:resource="&oddxi;Doctor0"/>
+        <oddx:inPatient rdf:resource="&oddxi;Patient0"/>
+        <oddx:finding rdf:resource="&oddxi;Symptom1"/>
+    </owl:NamedIndividual>
+    
+
+    <owl:NamedIndividual rdf:about="&oddxi;Disease1">
+        <rdf:type rdf:resource="&oddx;Disease"/>
+        <oddx:hasFinding rdf:resource="&oddxi;Symptom1"/>
+    </owl:NamedIndividual>
+    
+
+    <foaf:Person rdf:about="&oddxi;Doctor0">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+    </foaf:Person>
+    
+
+    <foaf:Person rdf:about="&oddxi;Patient0">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <foaf:age>23</foaf:age>
+        <oddx:population>location=West Kalimantan, ethnicity=Melayu</oddx:population>
+    </foaf:Person>
+    
+
+    <owl:NamedIndividual rdf:about="&oddxi;Symptom1">
+        <rdf:type rdf:resource="&oddx;Symptom"/>
+        <oddx:isFindingOf rdf:resource="&oddxi;Disease1"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+
