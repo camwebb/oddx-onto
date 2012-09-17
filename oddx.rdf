@@ -182,9 +182,9 @@
     
 
 
-    <!-- http://purl.org/openddx/oddx#estProbOfSymptom -->
+    <!-- http://purl.org/openddx/oddx#estProbOfFinding -->
 
-    <owl:DatatypeProperty rdf:about="&oddx;estProbOfSymptom">
+    <owl:DatatypeProperty rdf:about="&oddx;estProbOfFinding">
         <rdfs:comment>Estimated probability of the number of cases of a disease in which a symptom was observed</rdfs:comment>
         <rdfs:range rdf:resource="&xsd;decimal"/>
     </owl:DatatypeProperty>
